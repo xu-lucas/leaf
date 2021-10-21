@@ -197,7 +197,6 @@ int main()
 	for (auto &it : v1)
 	{
 		cout << it << " ";
-		++it;
 	}
 	cout << endl;
 	return 0;
