@@ -35,28 +35,23 @@ void bubblesort(vector<int>& v)
 	}
 }
 
-//快速排序->挖坑版----经典写法
+//快速排序
 int partition(vector<int>& v, int left, int right)
 {
 	int pivot = v[left];
-	int  mark = left;
-	while (left < right)
+	int pLeft = left + 1;
+	int pRight = right;
+	while (pLeft <= pRight)
 	{
-		while (left < right && v[right] >= pivot)
-		{
-			--right;
+		while (pLeft <= pRight && v[pLeft] <= pivot) pLeft++;
+		while (pLeft <= pRight && v[pRight] >= pivot) pRight--;
+		if (pLeft < pRight) {
+			swap(v[pLeft], v[pRight]);
 		}
-		v[mark] = v[right];
-		mark = right;
-		while (left < right && v[left] <= pivot)
-		{
-			++left;
-		}
-		v[mark] = v[left];
-		mark = left;
 	}
-	v[mark] = pivot;
-	return mark;
+
+	swap(v[left], v[pRight]);
+	return pRight;
 }
 void quicksort(vector<int>& v, int left, int right)
 {
